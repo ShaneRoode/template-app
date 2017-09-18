@@ -7,9 +7,10 @@ body {
       
       .grid-container {
         display: grid;
-        grid-template-columns: 0.25fr 1px 0.75fr;
-        grid-template-rows: 100px 1px auto 1px auto 1px 100px;
+        grid-template-columns: 0.25fr auto;
+        grid-template-rows: 100px auto auto 100px;
         height: 100vh; /*calc(100vh - 10px);*/
+        width: 100wh; /*calc(100vh - 10px);*/
       }
       
       .grid-element {
@@ -21,7 +22,7 @@ body {
       
       .header {
         grid-column-start: 1;
-        grid-column-end: 4;
+        grid-column-end: 3;
         grid-row-start: 1;
         grid-row-end: 2;
         background: #69F;
@@ -30,32 +31,64 @@ body {
       .sidebar {
         grid-column-start: 1;
         grid-column-end: 2;
-        grid-row-start: 3;
-        grid-row-end: 6;
+        grid-row-start: 2;
+        grid-row-end: 4;
         background: #6F9;
+      }
+
+      nav {
+        transition: transform .3s ease-in-out;
+      }
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav a {
+        color: #F69;
       }
       
       .main {
-        grid-column-start: 3;
-        grid-column-end: 4;
-        grid-row-start: 3;
-        grid-row-end: 4;
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3;
         background: #F69;
-        /* height:400px; */
       }
       
       .extra {
-        grid-column-start: 3;
-        grid-column-end: 4;
-        grid-row-start: 5;
-        grid-row-end: 6;
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
         background: #9F6;
       }
       
       .footer {
         grid-column-start: 1;
-        grid-column-end: 4;
-        grid-row-start: 7;
-        grid-row-end: 8;
+        grid-column-end: 3;
+        grid-row-start: 4;
+        grid-row-end: 5;
         background: #F96;
       }  
+
+      /* Desktop */
+      @media only screen and (min-width: 600px) {
+        .toggle {
+          display: none;
+        }
+      }  
+
+      /* Mobile */
+      @media only screen and (max-width: 599px) {
+
+        .grid-container {
+          grid-template-columns: auto;
+        }
+
+        .main, .extra, .header, .footer{
+          grid-column-start: 1;
+          grid-column-end: 2;
+        }
+   }

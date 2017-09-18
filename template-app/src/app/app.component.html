@@ -1,19 +1,27 @@
 <div class="grid-container">
-  
-  <div class="grid-element header">
-    Header
-  </div>
-  <div class="grid-element sidebar">
-    Sidebar
-  </div>
-  <div class="grid-element main">
-    Main Content
-  </div>
-  <div class="grid-element extra">
-    Extra Info
-  </div>
-  <div class="grid-element footer">
-    Footer
-  </div>
-  
+
+  <header class="grid-element header">
+      <div class="toggle" (click)="toggleNav()">hamburger</div>
+  </header>
+
+  <nav class="grid-element sidebar" id="nav" >
+    <ul>
+      <li>
+        <a href="#">Item 1</a>
+      </li>
+      <li>
+        <a href="#">Item 2</a>
+      </li>
+      <li>
+        <a href="#">Item 3</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section class="grid-element main">.</section>
+
+  <aside class="grid-element extra">.</aside>
+
+  <footer class="grid-element footer">.</footer>
+
 </div>
