@@ -37,6 +37,7 @@ body {
 
       nav {
         transition: transform .3s ease-in-out;
+        min-width: 200px;
       }
       nav ul {
         list-style: none;
