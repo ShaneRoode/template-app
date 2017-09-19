@@ -8,11 +8,10 @@ body {
       .grid-container {
         display: grid;
         grid-template-columns: 0.25fr auto;
-        grid-template-rows: 100px auto auto 100px;
+        grid-template-rows: 100px auto 100px;
         height: 100vh; /*calc(100vh - 10px);*/
         width: 100wh; /*calc(100vh - 10px);*/
       }
-      
       .grid-element {
         background-color: #444;
         color: #fff;
@@ -32,7 +31,7 @@ body {
         grid-column-start: 1;
         grid-column-end: 2;
         grid-row-start: 2;
-        grid-row-end: 4;
+        grid-row-end: 3;
         background: #6F9;
       }
 
@@ -44,7 +43,6 @@ body {
         margin: 0;
         padding: 0;
       }
-
       nav a {
         color: #F69;
       }
@@ -54,22 +52,14 @@ body {
         grid-column-end: 3;
         grid-row-start: 2;
         grid-row-end: 3;
-        background: #F69;
-      }
-      
-      .extra {
-        grid-column-start: 2;
-        grid-column-end: 3;
-        grid-row-start: 3;
-        grid-row-end: 4;
         background: #9F6;
       }
       
       .footer {
         grid-column-start: 1;
         grid-column-end: 3;
-        grid-row-start: 4;
-        grid-row-end: 5;
+        grid-row-start: 3;
+        grid-row-end: 4;
         background: #F96;
       }  
 
