@@ -11,6 +11,7 @@ import { MenuComponent } from './menu/menu.component';
 import { MainComponent } from './main/main.component';
 import { FooterComponent } from './footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { WalletsComponent } from './wallets/wallets.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MenuComponent,
     MainComponent,
     FooterComponent,
-    DashboardComponent
+    DashboardComponent,
+    WalletsComponent
   ],
   imports: [
     BrowserModule,
