@@ -17,7 +17,6 @@ body {
         background-color: #444;
         color: #fff;
         padding: 20px;
-        font-size: 2em;
       }
       
       .header {
@@ -37,6 +36,7 @@ body {
         grid-row-start: 2;
         /* autoprefixer: off */
         grid-row-end: 3;
+        font-size: 2em;
         border-top: 1px solid #949ba2;
         border-bottom: 1px solid #949ba2;
         border-right: 1px solid #949ba2;
