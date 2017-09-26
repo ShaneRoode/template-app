@@ -8,10 +8,12 @@ import { AppRouterModule } from './app-router/app-router.module';
 
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
-import { MainComponent } from './main/main.component';
+import { TradesComponent } from './trades/trades.component';
 import { FooterComponent } from './footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { WalletsComponent } from './wallets/wallets.component';
+import { ApiComponent } from './api/api.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 @NgModule({
@@ -19,10 +21,12 @@ import { WalletsComponent } from './wallets/wallets.component';
     AppComponent,
     HeaderComponent,
     MenuComponent,
-    MainComponent,
+    TradesComponent,
     FooterComponent,
     DashboardComponent,
-    WalletsComponent
+    WalletsComponent,
+    ApiComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

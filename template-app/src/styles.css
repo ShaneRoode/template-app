@@ -3,6 +3,7 @@ body {
         font-family: "Dosis";
         padding: 0;
         margin: 0;
+        background-color: #252830;
       }
       
       .grid-container {
@@ -21,18 +22,24 @@ body {
       
       .header {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
-        background: #69F;
+        border-bottom: 1px solid #949ba2;
       }
       
       .sidebar {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 2;
         grid-row-start: 2;
+        /* autoprefixer: off */
         grid-row-end: 3;
-        background: #6F9;
+        border-top: 1px solid #949ba2;
+        border-bottom: 1px solid #949ba2;
+        border-right: 1px solid #949ba2;
       }
 
       nav {
@@ -50,18 +57,22 @@ body {
       
       .main {
         grid-column-start: 2;
+        /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 2;
+        /* autoprefixer: off */
         grid-row-end: 3;
-        background: #9F6;
+        border: 1px solid #949ba2;
       }
       
       .footer {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
-        background: #F96;
+        border-top: 1px solid #949ba2;
       }  
 
       /* Desktop */

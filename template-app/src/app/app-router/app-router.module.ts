@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { MainComponent } from './../main/main.component';
+import { TradesComponent } from './../trades/trades.component';
 import { DashboardComponent } from './../dashboard/dashboard.component';
 import { WalletsComponent } from './../wallets/wallets.component';
+import { ApiComponent } from './../api/api.component';
+import { SettingsComponent } from './../settings/settings.component';
 
 const routes: Routes = [
   {
@@ -16,12 +18,22 @@ const routes: Routes = [
     component: DashboardComponent,
   },
   {
-    path: 'main',
-    component: MainComponent,
-  },
-  {
     path: 'wallets',
     component: WalletsComponent,
+  },
+  {
+    path: 'trades',
+    component: TradesComponent,
+  },
+
+  {
+    path: 'api',
+    component: ApiComponent,
+  },
+
+  {
+    path: 'settings',
+    component: SettingsComponent,
   },
 ];
 

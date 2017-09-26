@@ -10,6 +10,6 @@ export class AppComponent {
   navOpen = true;
 
   toggleNav(): void {
-    console.log("toggleNav: ", this.navOpen);
+    console.log('toggleNav: ', this.navOpen);
   }
 }
