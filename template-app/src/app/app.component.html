@@ -6,12 +6,10 @@
       <app-menu></app-menu>
     </md-sidenav>
 
-    <button md-mini-fab class="example-fab" (click)="sidenav.toggle()">
-        <md-icon>keyboard_backspace</md-icon>
-    </button>
+    <md-slide-toggle class="example-margin" (click)="sidenav.toggle()" [checked]="checked">Menu</md-slide-toggle>
 
     <router-outlet></router-outlet>
-    
+
   </md-sidenav-container>
 
   <app-footer class="grid-element footer"></app-footer>

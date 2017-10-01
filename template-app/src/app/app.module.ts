@@ -14,7 +14,8 @@ import {
   MdTableModule,
   MdDatepickerModule,
   MdNativeDateModule,
-  MdIconModule
+  MdIconModule,
+  MdSlideToggleModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -59,7 +60,8 @@ import { SettingsComponent } from './settings/settings.component';
     MdTableModule,
     MdDatepickerModule,
     MdNativeDateModule,
-    MdIconModule
+    MdIconModule,
+    MdSlideToggleModule
   ],
   providers: [
     DataService

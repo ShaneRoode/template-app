@@ -7,9 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app works!';
-  navOpen = true;
-
-  toggleNav(): void {
-    console.log('toggleNav: ', this.navOpen);
-  }
+  color = 'accent';
+  checked = true;
+  disabled = false;
 }

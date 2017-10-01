@@ -13,6 +13,10 @@ nav ul {
   padding: 0;
 }
 
+nav ul li {
+  padding: 20px;
+}
+
 nav ul {
   color: white;
 }
@@ -20,7 +24,6 @@ nav ul {
 md-sidenav {
   font-size: 2em;
   color: white;
-  padding: 20px;
   border-right: 1px solid #949ba2;
 }
 
