@@ -13,7 +13,8 @@ import {
   MatSidenavModule,
   MdTableModule,
   MdDatepickerModule,
-  MdNativeDateModule
+  MdNativeDateModule,
+  MdIconModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -57,7 +58,8 @@ import { SettingsComponent } from './settings/settings.component';
     MatSidenavModule,
     MdTableModule,
     MdDatepickerModule,
-    MdNativeDateModule
+    MdNativeDateModule,
+    MdIconModule
   ],
   providers: [
     DataService
