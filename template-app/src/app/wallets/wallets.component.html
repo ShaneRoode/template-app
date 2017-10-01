@@ -10,17 +10,32 @@
         <form>
             <div class="form-group">
                 <label for="walletId">wallet id</label>
-                <input type="text" name="walletId" class="form-control" id="walletId" aria-describedby="walletIdHelp" placeholder="Enter wallet id - automate"
+                <input type="text" 
+                    name="walletId" 
+                    class="form-control" 
+                    id="walletId" 
+                    aria-describedby="walletIdHelp" 
+                    placeholder="Enter wallet id - automate"
                     [(ngModel)]="wallet.id">
             </div>
             <div class="form-group">
                 <label for="walletName">Name</label>
-                <input type="text" name="name" class="form-control" id="walletName" aria-describedby="walletNameHelp" placeholder="Enter wallet name"
+                <input type="text" 
+                    name="name" 
+                    class="form-control" 
+                    id="walletName" 
+                    aria-describedby="walletNameHelp" 
+                    placeholder="Enter wallet name"
                     [(ngModel)]="wallet.name">
             </div>
             <div class="form-group">
                 <label for="walletUnits">Units</label>
-                <input type="text" name="units" class="form-control" id="walletUnits" aria-describedby="walletUnitsHelp" placeholder="Enter wallet units"
+                <input type="text" 
+                    name="units" 
+                    class="form-control" 
+                    id="walletUnits" 
+                    aria-describedby="walletUnitsHelp" 
+                    placeholder="Enter wallet units"
                     [(ngModel)]="wallet.units">
             </div>
             <button type="button" class="btn btn-primary" (click)="addWallet()">Add</button>
