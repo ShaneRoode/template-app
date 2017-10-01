@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MdSnackBar } from '@angular/material';
 
 import { DataService } from './../services/data.service';
 import { Wallet } from './../model/wallet';
@@ -15,7 +16,7 @@ export class WalletsComponent implements OnInit {
   wallet: Wallet = new Wallet;
   wallets: Wallet[];
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, public snackBar: MdSnackBar) { }
 
   ngOnInit() {
     this.wallets = this.dataService.getWallets();
@@ -30,5 +31,12 @@ export class WalletsComponent implements OnInit {
 
     this.wallets.push(wallet);
     this.wallet = new Wallet;
+    this.openSnackBar('wallet added', 'Undo');
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }
