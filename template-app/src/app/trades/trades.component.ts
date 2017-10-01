@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { DataService } from './../services/data.service';
 import { Trade } from './../model/trade';
-import { TradeType } from './../model/trade';
 
 @Component({
   selector: 'app-trades',
@@ -20,8 +19,7 @@ export class TradesComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.dataService.getData());
-    this.trades = this.getTrades();
+    this.trades = this.dataService.getTrades();
   }
 
   addTrade() {
@@ -38,32 +36,5 @@ export class TradesComponent implements OnInit {
     this.trades.push(trade);
   }
 
-  getTrades(): Trade[] {
-
-    const trade1 = new Trade();
-    trade1.type = TradeType.LimitBuy;
-    trade1.openedDate = new Date();
-    trade1.closedDate = new Date();
-    trade1.bidAsk = 0.00514799;
-    trade1.unitsFilled = 23.55976148;
-    trade1.unitsTotal = 23.55976148;
-    trade1.actualRate = 0.00514004;
-    trade1.costProceeds = -0.12140109;
-
-    const trade2 = new Trade();
-    trade2.type = TradeType.LimitBuy;
-    trade2.openedDate = new Date();
-    trade2.closedDate = new Date();
-    trade2.bidAsk = 0.00514799;
-    trade2.unitsFilled = 23.55976148;
-    trade2.unitsTotal = 23.55976148;
-    trade2.actualRate = 0.00514004;
-    trade2.costProceeds = -0.12140109;
-
-    return [
-      trade1,
-      trade2
-    ];
-  }
 }
 
