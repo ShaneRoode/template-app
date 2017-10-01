@@ -9,7 +9,9 @@ import {
   MdCheckboxModule,
   MdInputModule,
   MdCardModule,
-  MdListModule
+  MdListModule,
+  MatSidenavModule,
+  MdTableModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -49,7 +51,9 @@ import { SettingsComponent } from './settings/settings.component';
     MdCheckboxModule,
     MdInputModule,
     MdCardModule,
-    MdListModule
+    MdListModule,
+    MatSidenavModule,
+    MdTableModule
   ],
   providers: [
     DataService

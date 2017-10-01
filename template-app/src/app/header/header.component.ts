@@ -10,7 +10,12 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log("header comonent!")
+  }
+
+  toggle() {
+
   }
 
 }
+
+

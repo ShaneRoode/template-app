@@ -5,7 +5,6 @@ import { Wallet } from './../model/wallet';
 
 @Component({
   selector: 'app-wallets',
-  host: { class: 'grid-element main' },
   templateUrl: './wallets.component.html',
   styleUrls: ['./wallets.component.css']
 })

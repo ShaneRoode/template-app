@@ -1,40 +1,60 @@
 import { Component, OnInit } from '@angular/core';
+import { DataSource } from '@angular/cdk/collections';
 
 import { DataService } from './../services/data.service';
-import { Trade } from './../model/trade';
+import { Trade, TradesDataSource, TradeDatabase } from './../model/trade';
 
 @Component({
   selector: 'app-trades',
-  host: { class: 'grid-element main' },
   templateUrl: './trades.component.html',
   styleUrls: ['./trades.component.css']
 })
 export class TradesComponent implements OnInit {
 
-  title = 'Trades Component';
-  trades: Trade[];
-  trade: Trade = new Trade;
+  title = 'Trades';
+  displayedColumns = [
+    'id',
+    'openedDate',
+    'closedDate',
+    'type',
+    'bidAsk',
+    'unitsFilled',
+    'unitsTotal',
+    'actualRate',
+    'costProceeds'
+  ];
+  tradeDatabase = new TradeDatabase();
+  trades: TradesDataSource | null;
+  trade: Trade;
 
   constructor(private dataService: DataService) {
   }
 
   ngOnInit() {
-    this.trades = this.dataService.getTrades();
+    // this.trades = this.dataService.getTrades();
+    this.trade = this.initTrade();
+    if (this.trades) {
+      return;
+    }
+    this.trades = new TradesDataSource(this.tradeDatabase);
+  }
+
+  initTrade(): Trade {
+    return {
+      id: 0,
+      openedDate: new Date(),
+      closedDate: new Date(),
+      type: 0,
+      bidAsk: 0,
+      unitsFilled: 0,
+      unitsTotal: 0,
+      actualRate: 0,
+      costProceeds: 0,
+    };
   }
 
   addTrade() {
-    const trade = new Trade;
-    trade.type = this.trade.type;
-    trade.openedDate = new Date();
-    trade.closedDate = new Date();
-    trade.bidAsk = this.trade.bidAsk;
-    trade.unitsFilled = this.trade.unitsFilled;
-    trade.unitsTotal = this.trade.unitsTotal;
-    trade.actualRate = this.trade.actualRate;
-    trade.costProceeds = this.trade.costProceeds;
-
-    this.trades.push(trade);
+    // this.trades.push(this.trade);
   }
-
 }
 

@@ -1,11 +1,18 @@
 <div class="grid-container">
-
   <app-header class="grid-element header"></app-header>
 
-  <app-menu class="grid-element sidebar"></app-menu>
+  <md-sidenav-container class="grid-element sidebar">
+    <md-sidenav #sidenav mode="side" opened="true" class="grid-element">
+      <app-menu></app-menu>
+    </md-sidenav>
 
-  <router-outlet class="grid-element main"></router-outlet>
+    <button md-mini-fab class="example-fab" (click)="sidenav.toggle()">
+        <md-icon>Menu</md-icon>
+    </button>
+
+    <router-outlet></router-outlet>
+    
+  </md-sidenav-container>
 
   <app-footer class="grid-element footer"></app-footer>
-
 </div>

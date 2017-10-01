@@ -1,8 +1,15 @@
-.card {
-    color: black;
-    text-align: left;
+.mat-card {
+    margin-bottom: 20px;
 }
 
-img.card-img-top {
-    text-align: center;
-}
+.example-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+    min-width: 300px;
+  }
+  
+.mat-table {
+    overflow: auto;
+    max-height: 500px;
+  }

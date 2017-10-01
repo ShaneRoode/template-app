@@ -1,82 +1,92 @@
 <h1>{{title}}</h1>
 
-<div class="card mb-5">
-  <div class="card-body">
-    <h4 class="card-title">Trade</h4>
+<md-card>
+  <md-card-title>Add Trade</md-card-title>
 
-    <p class="card-text">Add a new trade</p>
-
-    <form>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="closedDate" class="col-form-label">Closed Date</label>
-          <input type="closedDate" name="closedDate" class="form-control" id="closedDate" placeholder="Closed Date" [(ngModel)]="trade.closedDate">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="openedDate" class="col-form-label">Opened Date</label>
-          <input type="openedDate" name="openedDate" class="form-control" id="openedDate" placeholder="Opened Date" [(ngModel)]="trade.openedDate">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="type" class="col-form-label">Type</label>
-        <input type="text" name="type" class="form-control" id="type" placeholder="trade type" [(ngModel)]="trade.type">
-      </div>
-      <div class="form-group">
-        <label for="bidAsk" class="col-form-label">Bid / Ask</label>
-        <input type="text" name="bidAsk" class="form-control" id="bidAsk" placeholder="Bid / Ask" [(ngModel)]="trade.bidAsk">
-      </div>
-      <div class="form-group">
-        <label for="unitsFilled" class="col-form-label">Units Filled</label>
-        <input type="text" name="unitsFilled" class="form-control" id="unitsFilled" placeholder="Units Filled" [(ngModel)]="trade.unitsFilled">
-      </div>
-      <div class="form-group">
-        <label for="unitsTotal" class="col-form-label">Units Total</label>
-        <input type="text" name="unitsTotal" class="form-control" id="unitsTotal" placeholder="Units Total" [(ngModel)]="trade.unitsTotal">
-      </div>
-      <div class="form-group">
-        <label for="actualRate" class="col-form-label">Actual Rate</label>
-        <input type="text" name="actualRate" class="form-control" id="actualRate" placeholder="Actual Rate" [(ngModel)]="trade.actualRate">
-      </div>
-      <div class="form-group">
-        <label for="costProceeds" class="col-form-label">Cost / Proceeds</label>
-        <input type="text" name="costProceeds" class="form-control" id="costProceeds" placeholder="Cost Proceeds" [(ngModel)]="trade.costProceeds">
-      </div>
-      <button type="button" class="btn btn-primary" (click)="addTrade()">Add trade</button>
+  <md-card-content>
+    <form class="example-form">
+      <md-form-field>
+        <input mdInput name="closedDate" placeholder="Closed date" [(ngModel)]="trade.closedDate">
+      </md-form-field>
+      <md-form-field>
+        <input mdInput name="openedDate" placeholder="Opened date" [(ngModel)]="trade.openedDate">
+      </md-form-field>
+      <md-form-field>
+        <input mdInput name="tradeType" placeholder="Trade type" [(ngModel)]="trade.type">
+      </md-form-field>
+      <md-form-field>
+        <input mdInput name="bidAsk" placeholder="Bid / Ask" [(ngModel)]="trade.bidAsk">
+      </md-form-field>
+      <md-form-field>
+        <input mdInput name="unitsFilled" placeholder="Units filled" [(ngModel)]="trade.unitsFilled">
+      </md-form-field>
+      <md-form-field>
+        <input mdInput name="unitsTotal" placeholder="Units total" [(ngModel)]="trade.unitsTotal">
+      </md-form-field>
+      <md-form-field>
+        <input mdInput name="actualRate" placeholder="Actual rate" [(ngModel)]="trade.actualRate">
+      </md-form-field>
+      <md-form-field>
+        <input mdInput name="costProceeds" placeholder="Cost proceeds" [(ngModel)]="trade.costProceeds">
+      </md-form-field>
     </form>
-  </div>
-</div>
+  </md-card-content>
 
-<div class="card">
-  <div class="card-body">
-    <h4 class="card-title">Trades</h4>
+  <md-card-actions layout="row" layout-align="end center">
+    <button md-button (click)="addTrade()">Add</button>
+  </md-card-actions>
+</md-card>
 
-    <p class="card-text">list of trades</p>
+<div class="example-container mat-elevation-z8">
+  <md-table #table [dataSource]="trades" [trackBy]="id">
 
-    <table class="table table-sm table-responsive">
-      <thead>
-        <tr>
-          <th>Closed Date</th>
-          <th>Opened Date</th>
-          <th>Type</th>
-          <th>Bid / Ask</th>
-          <th>Units Filled</th>
-          <th>Units Total</th>
-          <th>Actual Rate</th>
-          <th>Cost / Proceeds</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let trade of trades">
-          <th scope="row">{{trade.closedDate | date}}</th>
-          <td>{{trade.openedDate | date}}</td>
-          <td>{{trade.type}}</td>
-          <td>{{trade.bidAsk}}</td>
-          <td>{{trade.unitsFilled}}</td>
-          <td>{{trade.unitsTotal}}</td>
-          <td>{{trade.actualRate}}</td>
-          <td>{{trade.costProceeds}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <ng-container mdColumnDef="id">
+      <md-header-cell *mdHeaderCellDef> ID </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.id}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="openedDate">
+      <md-header-cell *mdHeaderCellDef> Opened </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.openedDate | date}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="closedDate">
+      <md-header-cell *mdHeaderCellDef> Closed </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.closedDate | date}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="type">
+      <md-header-cell *mdHeaderCellDef> Type </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.type}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="bidAsk">
+      <md-header-cell *mdHeaderCellDef> Bid/Ask </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.bidAsk}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="unitsFilled">
+      <md-header-cell *mdHeaderCellDef> Units Filled </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.unitsFilled}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="unitsTotal">
+      <md-header-cell *mdHeaderCellDef> Units Total </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.unitsTotal}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="actualRate">
+      <md-header-cell *mdHeaderCellDef> Actual Rate </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.actualRate}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="costProceeds">
+      <md-header-cell *mdHeaderCellDef> Cost Proceeds </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.costProceeds}} </md-cell>
+    </ng-container>
+
+    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+
+  </md-table>
 </div>

@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-
 @Component({
   selector: 'app-dashboard',
-  host: { class: 'grid-element main' },
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
