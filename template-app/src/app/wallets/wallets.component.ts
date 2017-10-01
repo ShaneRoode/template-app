@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DataService } from './../services/data.service';
+import { Wallet } from './../model/wallet';
 
 @Component({
   selector: 'app-wallets',
@@ -49,15 +50,4 @@ export class WalletsComponent implements OnInit {
     this.wallet = new Wallet;
   }
 
-}
-
-class Wallet {
-
-  id: number;
-  name: string;
-  units: number;
-
-  constructor() {
-
-  }
 }

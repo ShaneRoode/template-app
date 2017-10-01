@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DataService } from './../services/data.service';
+import { Trade } from './../model/trade';
+import { TradeType } from './../model/trade';
 
 @Component({
   selector: 'app-trades',
@@ -65,21 +67,3 @@ export class TradesComponent implements OnInit {
   }
 }
 
-class Trade {
-
-  id: number;
-  type: TradeType;
-  openedDate: Date;
-  closedDate: Date;
-  bidAsk: number;
-  unitsFilled: number;
-  unitsTotal: number;
-  actualRate: number;
-  costProceeds: number;
-
-  constructor() { }
-}
-
-enum TradeType {
-  LimitBuy
-}
