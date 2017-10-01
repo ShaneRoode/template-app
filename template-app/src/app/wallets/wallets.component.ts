@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DataService } from './../services/data.service';
+
 @Component({
   selector: 'app-wallets',
   host: { class: 'grid-element main' },
@@ -13,7 +15,7 @@ export class WalletsComponent implements OnInit {
   wallet: Wallet = new Wallet;
   wallets: Wallet[];
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.wallets = this.getWallets();

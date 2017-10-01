@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AppRouterModule } from './app-router/app-router.module';
 
+import { DataService } from './services/data.service';
+
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
 import { TradesComponent } from './trades/trades.component';
@@ -34,7 +36,9 @@ import { SettingsComponent } from './settings/settings.component';
     HttpModule,
     AppRouterModule,
   ],
-  providers: [],
+  providers: [
+    DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

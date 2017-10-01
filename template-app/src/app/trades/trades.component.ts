@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DataService } from './../services/data.service';
+
 @Component({
   selector: 'app-trades',
   host: { class: 'grid-element main' },
@@ -12,10 +14,11 @@ export class TradesComponent implements OnInit {
   trades: Trade[];
   trade: Trade = new Trade;
 
-  constructor() {
+  constructor(private dataService: DataService) {
   }
 
   ngOnInit() {
+    console.log(this.dataService.getData());
     this.trades = this.getTrades();
   }
 
