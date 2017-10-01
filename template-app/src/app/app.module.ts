@@ -1,7 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+
+import {
+  MdButtonModule,
+  MdCheckboxModule,
+  MdInputModule,
+  MdCardModule,
+  MdListModule
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { AppRouterModule } from './app-router/app-router.module';
@@ -35,6 +44,12 @@ import { SettingsComponent } from './settings/settings.component';
     FormsModule,
     HttpModule,
     AppRouterModule,
+    BrowserAnimationsModule,
+    MdButtonModule,
+    MdCheckboxModule,
+    MdInputModule,
+    MdCardModule,
+    MdListModule
   ],
   providers: [
     DataService

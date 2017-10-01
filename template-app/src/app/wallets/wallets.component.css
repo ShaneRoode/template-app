@@ -10,3 +10,7 @@ img.card-img-top {
     background-attachment: fixed;
     background-position: center; 
 }
+
+md-card {
+    margin-bottom: 20px;
+}
