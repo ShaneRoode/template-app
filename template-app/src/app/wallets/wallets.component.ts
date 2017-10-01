@@ -27,9 +27,9 @@ export class WalletsComponent implements OnInit {
     const wallet = new Wallet();
     wallet.name = this.wallet.name;
     wallet.units = this.wallet.units;
+    wallet.id = this.wallet.id;
 
     this.wallets.push(wallet);
     this.wallet = new Wallet;
   }
-
 }

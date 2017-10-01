@@ -8,14 +8,17 @@ import { Injectable } from '@angular/core';
 export class DataService {
 
   test = 'this is the data service';
+  wallets: Wallet[];
 
-  constructor() { }
+  constructor() {
+    this.setWallets();
+  }
 
   getData(): string {
     return this.test;
   }
 
-  getWallets(): Wallet[] {
+  setWallets() {
 
     const wallet1 = new Wallet;
     wallet1.id = 1;
@@ -27,10 +30,13 @@ export class DataService {
     wallet2.name = 'Neo';
     wallet2.units = 285.5031221;
 
-    return [
-      wallet1,
-      wallet2
-    ];
+    const wallets = [wallet1, wallet2];
+
+    localStorage.setItem(LocalStorageKey.wallets.toString(), JSON.stringify(wallets));
+  }
+
+  getWallets(): Wallet[] {
+    return JSON.parse(localStorage.getItem(LocalStorageKey.wallets.toString()));
   }
 
   getTrades(): Trade[] {
@@ -61,4 +67,8 @@ export class DataService {
     ];
   }
 
+}
+
+enum LocalStorageKey {
+  wallets
 }
