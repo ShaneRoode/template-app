@@ -6,10 +6,14 @@
   <md-card-content>
     <form class="example-form">
       <md-form-field>
-        <input mdInput name="closedDate" placeholder="Closed date" [(ngModel)]="trade.closedDate">
+        <input mdInput [mdDatepicker]="openedDatePicker" [(ngModel)]="openedDate" name="openedDatePicker" placeholder="Closed date" [disabled]="inputDisabled">
+        <md-datepicker-toggle mdSuffix [for]="openedDatePicker"></md-datepicker-toggle>
+        <md-datepicker touchUi="true" #openedDatePicker></md-datepicker>
       </md-form-field>
       <md-form-field>
-        <input mdInput name="openedDate" placeholder="Opened date" [(ngModel)]="trade.openedDate">
+        <input mdInput [mdDatepicker]="closedDatePicker" [(ngModel)]="closedDate" name="closedDatePicker" placeholder="Opened date">
+        <md-datepicker-toggle mdSuffix [for]="closedDatePicker"></md-datepicker-toggle>
+        <md-datepicker touchUi="true" #closedDatePicker></md-datepicker>
       </md-form-field>
       <md-form-field>
         <input mdInput name="tradeType" placeholder="Trade type" [(ngModel)]="trade.type">

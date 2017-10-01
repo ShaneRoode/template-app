@@ -11,7 +11,9 @@ import {
   MdCardModule,
   MdListModule,
   MatSidenavModule,
-  MdTableModule
+  MdTableModule,
+  MdDatepickerModule,
+  MdNativeDateModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -53,7 +55,9 @@ import { SettingsComponent } from './settings/settings.component';
     MdCardModule,
     MdListModule,
     MatSidenavModule,
-    MdTableModule
+    MdTableModule,
+    MdDatepickerModule,
+    MdNativeDateModule
   ],
   providers: [
     DataService
