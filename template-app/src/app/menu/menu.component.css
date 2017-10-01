@@ -1,0 +1,13 @@
+md-button-toggle {
+    color: white !important;
+    cursor: pointer;
+}
+
+div {
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.mat-button-toggle-checked {
+    background-color: #636363;
+}

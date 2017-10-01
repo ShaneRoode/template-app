@@ -17,7 +17,8 @@ import {
   MdIconModule,
   MdSlideToggleModule,
   MdSnackBarModule,
-  MdProgressSpinnerModule
+  MdProgressSpinnerModule,
+  MdButtonToggleModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -65,7 +66,8 @@ import { SettingsComponent } from './settings/settings.component';
     MdIconModule,
     MdSlideToggleModule,
     MdSnackBarModule,
-    MdProgressSpinnerModule
+    MdProgressSpinnerModule,
+    MdButtonToggleModule
   ],
   providers: [
     DataService

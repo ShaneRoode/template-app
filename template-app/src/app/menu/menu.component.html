@@ -1,24 +1,22 @@
-<nav>
-  <ul>
-    <li>
-      <md-icon>home</md-icon>
-      <a routerLink="/dashboard">dashboard</a>
-    </li>
-    <li>
-      <md-icon>account_balance_wallet</md-icon>
-      <a routerLink="/wallets">wallets</a>
-    </li>
-    <li>
-      <md-icon>list</md-icon>
-      <a routerLink="/trades">trades</a>
-    </li>
-    <li>
-      <md-icon>cloud</md-icon>
-      <a routerLink="/api">api</a>
-    </li>
-    <li>
-      <md-icon>settings</md-icon>
-      <a routerLink="/settings">settings</a>
-    </li>
-  </ul>
-</nav>
+<md-button-toggle-group vertical #group="mdButtonToggleGroup">
+  <md-button-toggle routerLink="/dashboard" value="dashboard">
+    <md-icon>home</md-icon>
+    <div>Dashboard</div>
+  </md-button-toggle>
+  <md-button-toggle routerLink="/wallets" value="wallets">
+    <md-icon>account_balance_wallet</md-icon>
+    <div>Wallets</div>
+  </md-button-toggle>
+  <md-button-toggle routerLink="/trades" value="trades">
+    <md-icon>list</md-icon>
+    <div>Trades</div>
+  </md-button-toggle>
+  <md-button-toggle routerLink="/api" value="api">
+    <md-icon>cloud</md-icon>
+    <div>Api</div>
+  </md-button-toggle>
+  <md-button-toggle routerLink="/settings" value="settings">
+    <md-icon>settings</md-icon>
+    <div>Settings</div>
+  </md-button-toggle>
+</md-button-toggle-group>
