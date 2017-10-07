@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-api',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApiComponent implements OnInit {
 
-  constructor() { }
+  myData: Array<any>;
+  gettingData: boolean;
+
+  constructor(private http: Http) { }
 
   ngOnInit() {
+    console.log('myData', this.myData);
+    if (this.myData) { return; }
+
+    this.getDummyData();
   }
 
+  getDummyData() {
+    console.log('getDummyData', this.myData);
+    this.gettingData = true;
+    this.http.get('https://jsonplaceholder.typicode.com/photos')
+      .map(response => response.json())
+      .subscribe(res => this.myData = res)
+      .add(() => this.gettingData = false);
+  }
 }
