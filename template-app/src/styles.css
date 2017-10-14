@@ -21,7 +21,7 @@ nav ul {
   color: white;
 }
 
-md-sidenav {
+mat-sidenav {
   font-size: 2em;
   color: white;
   border-right: 1px solid #949ba2;

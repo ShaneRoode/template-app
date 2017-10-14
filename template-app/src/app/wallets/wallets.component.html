@@ -1,34 +1,17 @@
 <h1>Wallets</h1>
 
-<md-card>
-    <md-card-title>Create Wallet</md-card-title>
+<button mat-fab color="accent" (click)="openDialog()">
+    <mat-icon>add</mat-icon>
+</button>
 
-    <md-card-content>
-        <form class="example-form">
-            <md-form-field>
-                <input mdInput name="walletId" placeholder="Wallet Id" [(ngModel)]="wallet.id">
-            </md-form-field>
-            <md-form-field>
-                <input mdInput name="walletName" placeholder="Wallet Name" [(ngModel)]="wallet.name">
-            </md-form-field>
-            <md-form-field>
-                <input mdInput name="walletUnits" placeholder="Wallet Units" [(ngModel)]="wallet.units">
-            </md-form-field>
-        </form>
-    </md-card-content>
-    <md-card-actions layout="row" layout-align="end center">
-        <button md-button (click)="addWallet()">Add</button>
-    </md-card-actions>
-</md-card>
-
-<md-card>
-    <md-card-content>
-        <md-list>
-            <md-list-item *ngFor="let item of wallets">
-                <md-icon md-list-icon>graphic_eq</md-icon>
-                <h4 md-line>{{item.name}}</h4>
-                <p md-line> {{item.units}} </p>
-            </md-list-item>
-        </md-list>
-    </md-card-content>
-</md-card>
+<mat-card>
+    <mat-card-content>
+        <mat-list>
+            <mat-list-item *ngFor="let item of wallets">
+                <mat-icon mat-list-icon>graphic_eq</mat-icon>
+                <h4 mat-line>{{item.name}}</h4>
+                <p mat-line> {{item.units}} </p>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+</mat-card>

@@ -1,96 +1,96 @@
 <h1>{{title}}</h1>
 
-<md-card>
-  <md-card-title>Add Trade</md-card-title>
+<mat-card>
+  <mat-card-title>Add Trade</mat-card-title>
 
-  <md-card-content>
+  <mat-card-content>
     <form class="example-form">
-      <md-form-field>
-        <input mdInput [mdDatepicker]="openedDatePicker" [(ngModel)]="openedDate" name="openedDatePicker" placeholder="Closed date" [disabled]="inputDisabled">
-        <md-datepicker-toggle mdSuffix [for]="openedDatePicker"></md-datepicker-toggle>
-        <md-datepicker touchUi="true" #openedDatePicker></md-datepicker>
-      </md-form-field>
-      <md-form-field>
-        <input mdInput [mdDatepicker]="closedDatePicker" [(ngModel)]="closedDate" name="closedDatePicker" placeholder="Opened date">
-        <md-datepicker-toggle mdSuffix [for]="closedDatePicker"></md-datepicker-toggle>
-        <md-datepicker touchUi="true" #closedDatePicker></md-datepicker>
-      </md-form-field>
-      <md-form-field>
-        <input mdInput name="tradeType" placeholder="Trade type" [(ngModel)]="trade.type">
-      </md-form-field>
-      <md-form-field>
-        <input mdInput name="bidAsk" placeholder="Bid / Ask" [(ngModel)]="trade.bidAsk">
-      </md-form-field>
-      <md-form-field>
-        <input mdInput name="unitsFilled" placeholder="Units filled" [(ngModel)]="trade.unitsFilled">
-      </md-form-field>
-      <md-form-field>
-        <input mdInput name="unitsTotal" placeholder="Units total" [(ngModel)]="trade.unitsTotal">
-      </md-form-field>
-      <md-form-field>
-        <input mdInput name="actualRate" placeholder="Actual rate" [(ngModel)]="trade.actualRate">
-      </md-form-field>
-      <md-form-field>
-        <input mdInput name="costProceeds" placeholder="Cost proceeds" [(ngModel)]="trade.costProceeds">
-      </md-form-field>
+      <mat-form-field>
+        <input matInput [matDatepicker]="openedDatePicker" [(ngModel)]="openedDate" name="openedDatePicker" placeholder="Closed date" [disabled]="inputDisabled">
+        <mat-datepicker-toggle matSuffix [for]="openedDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi="true" #openedDatePicker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [matDatepicker]="closedDatePicker" [(ngModel)]="closedDate" name="closedDatePicker" placeholder="Opened date">
+        <mat-datepicker-toggle matSuffix [for]="closedDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi="true" #closedDatePicker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="tradeType" placeholder="Trade type" [(ngModel)]="trade.type">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="bidAsk" placeholder="Bid / Ask" [(ngModel)]="trade.bidAsk">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="unitsFilled" placeholder="Units filled" [(ngModel)]="trade.unitsFilled">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="unitsTotal" placeholder="Units total" [(ngModel)]="trade.unitsTotal">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="actualRate" placeholder="Actual rate" [(ngModel)]="trade.actualRate">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="costProceeds" placeholder="Cost proceeds" [(ngModel)]="trade.costProceeds">
+      </mat-form-field>
     </form>
-  </md-card-content>
+  </mat-card-content>
 
-  <md-card-actions layout="row" layout-align="end center">
-    <button md-button (click)="addTrade()">Add</button>
-  </md-card-actions>
-</md-card>
+  <mat-card-actions layout="row" layout-align="end center">
+    <button mat-button (click)="addTrade()">Add</button>
+  </mat-card-actions>
+</mat-card>
 
 <div class="example-container mat-elevation-z8">
-  <md-table #table [dataSource]="trades" [trackBy]="id">
+  <mat-table #table [dataSource]="trades" [trackBy]="id">
 
-    <ng-container mdColumnDef="id">
-      <md-header-cell *mdHeaderCellDef> ID </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.id}} </md-cell>
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
     </ng-container>
 
-    <ng-container mdColumnDef="openedDate">
-      <md-header-cell *mdHeaderCellDef> Opened </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.openedDate | date}} </md-cell>
+    <ng-container matColumnDef="openedDate">
+      <mat-header-cell *matHeaderCellDef> Opened </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.openedDate | date}} </mat-cell>
     </ng-container>
 
-    <ng-container mdColumnDef="closedDate">
-      <md-header-cell *mdHeaderCellDef> Closed </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.closedDate | date}} </md-cell>
+    <ng-container matColumnDef="closedDate">
+      <mat-header-cell *matHeaderCellDef> Closed </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.closedDate | date}} </mat-cell>
     </ng-container>
 
-    <ng-container mdColumnDef="type">
-      <md-header-cell *mdHeaderCellDef> Type </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.type}} </md-cell>
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
     </ng-container>
 
-    <ng-container mdColumnDef="bidAsk">
-      <md-header-cell *mdHeaderCellDef> Bid/Ask </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.bidAsk}} </md-cell>
+    <ng-container matColumnDef="bidAsk">
+      <mat-header-cell *matHeaderCellDef> Bid/Ask </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.bidAsk}} </mat-cell>
     </ng-container>
 
-    <ng-container mdColumnDef="unitsFilled">
-      <md-header-cell *mdHeaderCellDef> Units Filled </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.unitsFilled}} </md-cell>
+    <ng-container matColumnDef="unitsFilled">
+      <mat-header-cell *matHeaderCellDef> Units Filled </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.unitsFilled}} </mat-cell>
     </ng-container>
 
-    <ng-container mdColumnDef="unitsTotal">
-      <md-header-cell *mdHeaderCellDef> Units Total </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.unitsTotal}} </md-cell>
+    <ng-container matColumnDef="unitsTotal">
+      <mat-header-cell *matHeaderCellDef> Units Total </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.unitsTotal}} </mat-cell>
     </ng-container>
 
-    <ng-container mdColumnDef="actualRate">
-      <md-header-cell *mdHeaderCellDef> Actual Rate </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.actualRate}} </md-cell>
+    <ng-container matColumnDef="actualRate">
+      <mat-header-cell *matHeaderCellDef> Actual Rate </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.actualRate}} </mat-cell>
     </ng-container>
 
-    <ng-container mdColumnDef="costProceeds">
-      <md-header-cell *mdHeaderCellDef> Cost Proceeds </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.costProceeds}} </md-cell>
+    <ng-container matColumnDef="costProceeds">
+      <mat-header-cell *matHeaderCellDef> Cost Proceeds </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.costProceeds}} </mat-cell>
     </ng-container>
 
-    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
-    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-  </md-table>
+  </mat-table>
 </div>

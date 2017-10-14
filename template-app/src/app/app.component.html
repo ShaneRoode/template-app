@@ -1,16 +1,16 @@
 <div class="grid-container">
   <app-header class="grid-element header"></app-header>
 
-  <md-sidenav-container class="grid-element sidebar">
-    <md-sidenav #sidenav mode="side" opened="true" class="grid-element">
+  <mat-sidenav-container class="grid-element sidebar">
+    <mat-sidenav #sidenav mode="side" opened="true" class="grid-element">
       <app-menu></app-menu>
-    </md-sidenav>
+    </mat-sidenav>
 
-    <md-slide-toggle (click)="sidenav.toggle()" [checked]="checked">Menu</md-slide-toggle>
+    <mat-slide-toggle (click)="sidenav.toggle()" [checked]="checked">Menu</mat-slide-toggle>
 
     <router-outlet></router-outlet>
 
-  </md-sidenav-container>
+  </mat-sidenav-container>
 
   <app-footer class="grid-element footer"></app-footer>
 </div>

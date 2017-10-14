@@ -5,20 +5,20 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import {
-  MdButtonModule,
-  MdCheckboxModule,
-  MdInputModule,
-  MdCardModule,
-  MdListModule,
+  MatButtonModule,
+  MatCheckboxModule,
+  MatInputModule,
+  MatCardModule,
+  MatListModule,
   MatSidenavModule,
-  MdTableModule,
-  MdDatepickerModule,
-  MdNativeDateModule,
-  MdIconModule,
-  MdSlideToggleModule,
-  MdSnackBarModule,
-  MdProgressSpinnerModule,
-  MdButtonToggleModule,
+  MatTableModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatIconModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatProgressSpinnerModule,
+  MatButtonToggleModule,
   MatTabsModule
 } from '@angular/material';
 
@@ -35,6 +35,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { WalletsComponent } from './wallets/wallets.component';
 import { ApiComponent } from './api/api.component';
 import { SettingsComponent } from './settings/settings.component';
+import { CreateWalletDialogComponent } from './create-wallet-dialog/create-wallet-dialog.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { SettingsComponent } from './settings/settings.component';
     DashboardComponent,
     WalletsComponent,
     ApiComponent,
-    SettingsComponent
+    SettingsComponent,
+    CreateWalletDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -55,21 +57,24 @@ import { SettingsComponent } from './settings/settings.component';
     HttpModule,
     AppRouterModule,
     BrowserAnimationsModule,
-    MdButtonModule,
-    MdCheckboxModule,
-    MdInputModule,
-    MdCardModule,
-    MdListModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatInputModule,
+    MatCardModule,
+    MatListModule,
     MatSidenavModule,
-    MdTableModule,
-    MdDatepickerModule,
-    MdNativeDateModule,
-    MdIconModule,
-    MdSlideToggleModule,
-    MdSnackBarModule,
-    MdProgressSpinnerModule,
-    MdButtonToggleModule,
+    MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatIconModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    MatButtonToggleModule,
     MatTabsModule
+  ],
+  entryComponents: [
+    CreateWalletDialogComponent
   ],
   providers: [
     DataService

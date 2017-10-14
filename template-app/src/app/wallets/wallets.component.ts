@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 
 import { DataService } from './../services/data.service';
 import { Wallet } from './../model/wallet';
+
+import { CreateWalletDialogComponent } from './../create-wallet-dialog/create-wallet-dialog.component';
 
 @Component({
   selector: 'app-wallets',
@@ -15,19 +18,31 @@ export class WalletsComponent implements OnInit {
 
   wallet: Wallet = new Wallet;
   wallets: Wallet[];
+  dialogRef: any;
 
-  constructor(private dataService: DataService, public snackBar: MdSnackBar) { }
+  constructor(
+    private dataService: DataService,
+    public snackBar: MatSnackBar,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.wallets = this.dataService.getWallets();
   }
 
-  addWallet() {
+  openDialog(): void {
+    this.dialogRef = this.dialog.open(CreateWalletDialogComponent, {
+      width: '250px',
+      data: this.wallet,
+    });
 
-    const wallet = new Wallet();
-    wallet.name = this.wallet.name;
-    wallet.units = this.wallet.units;
-    wallet.id = this.wallet.id;
+    this.dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.addWallet(result);
+      }
+    });
+  }
+
+  addWallet(wallet: Wallet) {
 
     this.wallets.push(wallet);
     this.wallet = new Wallet;
@@ -40,3 +55,4 @@ export class WalletsComponent implements OnInit {
     });
   }
 }
+

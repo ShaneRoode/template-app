@@ -1,4 +1,4 @@
-md-button-toggle {
+mat-button-toggle {
     color: white !important;
     cursor: pointer;
 }
@@ -27,6 +27,6 @@ button{
     text-align: left;
 }
 
-md-icon {
+mat-icon {
     padding-right: 10px;
 }

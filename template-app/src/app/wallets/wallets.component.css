@@ -11,6 +11,6 @@ img.card-img-top {
     background-position: center; 
 }
 
-md-card {
+mat-card {
     margin-bottom: 20px;
 }

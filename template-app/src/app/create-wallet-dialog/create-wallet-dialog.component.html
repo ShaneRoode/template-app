@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Create Wallet</h2>
+<mat-dialog-content>
+  <form class="example-form">
+    <mat-form-field>
+      <input matInput name="walletId" placeholder="address" [(ngModel)]="wallet.id">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput name="walletName" placeholder="Wallet Name" [(ngModel)]="wallet.name">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput name="walletUnits" placeholder="Wallet Units" [(ngModel)]="wallet.units">
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-fab color="warn" (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
+  <button mat-fab color="primary" (click)="addWallet()">
+    <mat-icon>add</mat-icon>
+  </button>
+</mat-dialog-actions>
