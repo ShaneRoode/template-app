@@ -1,7 +1,6 @@
 <h1>Api</h1>
 
-<mat-spinner *ngIf="gettingData"></mat-spinner>
-
+<mat-progress-bar *ngIf="gettingData" [color]="color" mode="query"></mat-progress-bar>
 <!-- <mat-card class="example-card">
 
     <mat-card-header>
@@ -19,102 +18,128 @@
 
 <mat-card class="example-card">
 
-    <mat-card-header>
-        <mat-card-title>Bitcoin block explorer api: {{ bitcoinWalletAddrKey }}</mat-card-title>
-    </mat-card-header>
+  <mat-card-header>
+    <mat-card-title>
+      <mat-form-field>
+        <input matInput name="bitcoinWalletAddrKey" placeholder="Bitcoin address" [(ngModel)]="bitcoinWalletAddrKey">
+      </mat-form-field>
+    </mat-card-title>
+  </mat-card-header>
 
-    <mat-card-content>{{ bitcoinAddrData | json }}</mat-card-content>
+  <mat-card-content>
+    <pre>{{ bitcoinAddrData | json }}</pre>
+  </mat-card-content>
 
-    <mat-card-actions>
-        <button mat-button>Edit</button>
-    </mat-card-actions>
+  <mat-card-actions>
+    <button (click)="getWalletData(bitcoinWalletAddrKey)" mat-button>Refresh</button>
+  </mat-card-actions>
 
 </mat-card>
 
 <mat-card class="example-card">
 
-    <mat-card-header>
-        <mat-card-title>BTC Markets CSV Export</mat-card-title>
-    </mat-card-header>
+  <mat-card-header>
+    <mat-card-title>
+      <mat-form-field>
+        <input matInput name="bitcoinWalletTransaction" placeholder="Bitcoin transaction" [(ngModel)]="bitcoinWalletTxKey">
+      </mat-form-field>
+    </mat-card-title>
+  </mat-card-header>
 
-    <mat-card-content>
-        <div class="example-container mat-elevation-z8">
-            <mat-table #table [dataSource]="btcMarketsTrades" [trackBy]="id">
-          
-              <ng-container matColumnDef="id">
-                <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-              </ng-container>
+  <mat-card-content>
+    <pre>{{ bitcoinTxData | json }}</pre>
+  </mat-card-content>
 
-              <ng-container matColumnDef="creationTime">
-                <mat-header-cell *matHeaderCellDef> Creation Time </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.creationTime | date}} </mat-cell>
-              </ng-container>
+  <mat-card-actions>
+    <button (click)="getWalletTransaction(bitcoinWalletTxKey)" mat-button>Refresh</button>
+  </mat-card-actions>
 
-              <ng-container matColumnDef="price">
-                <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
-              </ng-container>
+</mat-card>
 
-              <ng-container matColumnDef="volume">
-                <mat-header-cell *matHeaderCellDef> Volume </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.volume}} </mat-cell>
-              </ng-container>
+<mat-card class="example-card">
 
-              <ng-container matColumnDef="side">
-                <mat-header-cell *matHeaderCellDef> Side </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.side}} </mat-cell>
-              </ng-container>
+  <mat-card-header>
+    <mat-card-title>BTC Markets CSV Export</mat-card-title>
+  </mat-card-header>
 
-              <ng-container matColumnDef="instrument">
-                <mat-header-cell *matHeaderCellDef> Instrument </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.instrument}} </mat-cell>
-              </ng-container>
+  <mat-card-content>
+    <div class="example-container mat-elevation-z8">
+      <mat-table #table [dataSource]="btcMarketsTrades" [trackBy]="id">
 
-              <ng-container matColumnDef="currency">
-                <mat-header-cell *matHeaderCellDef> Currency </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.currency}} </mat-cell>
-              </ng-container>
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+        </ng-container>
 
-              <ng-container matColumnDef="market">
-                <mat-header-cell *matHeaderCellDef> Market </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.market}} </mat-cell>
-              </ng-container>
+        <ng-container matColumnDef="creationTime">
+          <mat-header-cell *matHeaderCellDef> Creation Time </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.creationTime | date}} </mat-cell>
+        </ng-container>
 
-              <ng-container matColumnDef="fee(Inctax)">
-                <mat-header-cell *matHeaderCellDef> Fee Inc Tax </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.feeIncTax}} </mat-cell>
-              </ng-container>
+        <ng-container matColumnDef="price">
+          <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
+        </ng-container>
 
-              <ng-container matColumnDef="feeCurrency">
-                <mat-header-cell *matHeaderCellDef> Fee Currency </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.feeCurrency}} </mat-cell>
-              </ng-container>
+        <ng-container matColumnDef="volume">
+          <mat-header-cell *matHeaderCellDef> Volume </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.volume}} </mat-cell>
+        </ng-container>
 
-              <ng-container matColumnDef="feeInBaseCurrency(Inctax)">
-                <mat-header-cell *matHeaderCellDef> Fee In Base Currency Inc Tax </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.feeInBaseCurrencyIncTax}} </mat-cell>
-              </ng-container>
+        <ng-container matColumnDef="side">
+          <mat-header-cell *matHeaderCellDef> Side </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.side}} </mat-cell>
+        </ng-container>
 
-              <ng-container matColumnDef="taxInBaseCurrency">
-                <mat-header-cell *matHeaderCellDef> Tax In Base Currency </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.taxInBaseCurrency}} </mat-cell>
-              </ng-container>
+        <ng-container matColumnDef="instrument">
+          <mat-header-cell *matHeaderCellDef> Instrument </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.instrument}} </mat-cell>
+        </ng-container>
 
-              <ng-container matColumnDef="orderId">
-                <mat-header-cell *matHeaderCellDef> Order Id </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.orderId}} </mat-cell>
-              </ng-container>
-          
-              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-          
-            </mat-table>
-          </div>
-    </mat-card-content>
+        <ng-container matColumnDef="currency">
+          <mat-header-cell *matHeaderCellDef> Currency </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.currency}} </mat-cell>
+        </ng-container>
 
-    <mat-card-actions>
-        <button mat-button>Edit</button>
-    </mat-card-actions>
+        <ng-container matColumnDef="market">
+          <mat-header-cell *matHeaderCellDef> Market </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.market}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="fee(Inctax)">
+          <mat-header-cell *matHeaderCellDef> Fee Inc Tax </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.feeIncTax}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="feeCurrency">
+          <mat-header-cell *matHeaderCellDef> Fee Currency </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.feeCurrency}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="feeInBaseCurrency(Inctax)">
+          <mat-header-cell *matHeaderCellDef> Fee In Base Currency Inc Tax </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.feeInBaseCurrencyIncTax}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="taxInBaseCurrency">
+          <mat-header-cell *matHeaderCellDef> Tax In Base Currency </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.taxInBaseCurrency}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="orderId">
+          <mat-header-cell *matHeaderCellDef> Order Id </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.orderId}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+      </mat-table>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-button>Edit</button>
+  </mat-card-actions>
 
 </mat-card>

@@ -11,6 +11,7 @@ import { Wallet } from './../model/wallet';
 export class CreateWalletDialogComponent {
 
   wallet: Wallet;
+
   constructor(
     public dialogRef: MatDialogRef<CreateWalletDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Wallet) {
@@ -21,7 +22,7 @@ export class CreateWalletDialogComponent {
     this.dialogRef.close(this.wallet);
   }
 
-  close (){
+  close() {
     this.dialogRef.close();
   }
   onNoClick(): void {

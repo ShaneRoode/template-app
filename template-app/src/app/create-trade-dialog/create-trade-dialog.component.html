@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>Create Trade</h2>
+
+<mat-dialog-content>
+  <form class="example-form">
+    <mat-form-field>
+      <input matInput [matDatepicker]="openedDatePicker" [(ngModel)]="openedDate" name="openedDatePicker" placeholder="Closed date" [disabled]="inputDisabled">
+      <mat-datepicker-toggle matSuffix [for]="openedDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker touchUi="true" #openedDatePicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="closedDatePicker" [(ngModel)]="closedDate" name="closedDatePicker" placeholder="Opened date">
+      <mat-datepicker-toggle matSuffix [for]="closedDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker touchUi="true" #closedDatePicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput name="tradeType" placeholder="Trade type" [(ngModel)]="trade.type">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput name="bidAsk" placeholder="Bid / Ask" [(ngModel)]="trade.bidAsk">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput name="unitsFilled" placeholder="Units filled" [(ngModel)]="trade.unitsFilled">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput name="unitsTotal" placeholder="Units total" [(ngModel)]="trade.unitsTotal">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput name="actualRate" placeholder="Actual rate" [(ngModel)]="trade.actualRate">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput name="costProceeds" placeholder="Cost proceeds" [(ngModel)]="trade.costProceeds">
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-fab color="warn" (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
+  <button mat-fab color="primary" (click)="addWallet()">
+    <mat-icon>add</mat-icon>
+  </button>
+</mat-dialog-actions>

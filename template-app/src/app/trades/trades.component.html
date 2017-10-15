@@ -1,45 +1,8 @@
 <h1>{{title}}</h1>
 
-<mat-card>
-  <mat-card-title>Add Trade</mat-card-title>
-
-  <mat-card-content>
-    <form class="example-form">
-      <mat-form-field>
-        <input matInput [matDatepicker]="openedDatePicker" [(ngModel)]="openedDate" name="openedDatePicker" placeholder="Closed date" [disabled]="inputDisabled">
-        <mat-datepicker-toggle matSuffix [for]="openedDatePicker"></mat-datepicker-toggle>
-        <mat-datepicker touchUi="true" #openedDatePicker></mat-datepicker>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput [matDatepicker]="closedDatePicker" [(ngModel)]="closedDate" name="closedDatePicker" placeholder="Opened date">
-        <mat-datepicker-toggle matSuffix [for]="closedDatePicker"></mat-datepicker-toggle>
-        <mat-datepicker touchUi="true" #closedDatePicker></mat-datepicker>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput name="tradeType" placeholder="Trade type" [(ngModel)]="trade.type">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput name="bidAsk" placeholder="Bid / Ask" [(ngModel)]="trade.bidAsk">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput name="unitsFilled" placeholder="Units filled" [(ngModel)]="trade.unitsFilled">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput name="unitsTotal" placeholder="Units total" [(ngModel)]="trade.unitsTotal">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput name="actualRate" placeholder="Actual rate" [(ngModel)]="trade.actualRate">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput name="costProceeds" placeholder="Cost proceeds" [(ngModel)]="trade.costProceeds">
-      </mat-form-field>
-    </form>
-  </mat-card-content>
-
-  <mat-card-actions layout="row" layout-align="end center">
-    <button mat-button (click)="addTrade()">Add</button>
-  </mat-card-actions>
-</mat-card>
+<button class="create-trade" mat-fab color="accent" (click)="openDialog()">
+  <mat-icon>add</mat-icon>
+</button>
 
 <div class="example-container mat-elevation-z8">
   <mat-table #table [dataSource]="trades" [trackBy]="id">

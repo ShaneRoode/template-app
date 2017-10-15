@@ -1,15 +1,31 @@
 <h1>{{title}}</h1>
 
-<mat-card>
+<div class="dashboard-grid">
+    <mat-card class="portfolio-grid-item">
         <mat-card-title>{{portfolio.name}}</mat-card-title>
         <mat-card-subtitle>{{portfolio.total | currency:'AUD'}} : {{portfolio.units}}</mat-card-subtitle>
-    <mat-card-content>
-        <mat-list>
-            <mat-list-item *ngFor="let asset of portfolio.assets">
-                <mat-icon mat-list-icon>graphic_eq</mat-icon>
-                <h4 mat-line>{{asset.assetName}}</h4>
-                <p mat-line>{{asset.value | currency:'AUD'}} : {{asset.units}} : {{asset.profitLoss | percent}}</p>
-            </mat-list-item>
-        </mat-list>
-    </mat-card-content>
-</mat-card>
+        <mat-card-content>
+            <mat-list>
+                <mat-list-item *ngFor="let asset of portfolio.assets">
+                    <mat-icon mat-list-icon>graphic_eq</mat-icon>
+                    <h4 mat-line>{{asset.assetName}}</h4>
+                    <p mat-line>{{asset.value | currency:'AUD'}} : {{asset.units}} : {{asset.profitLoss | percent}}</p>
+                </mat-list-item>
+            </mat-list>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="asset-grid-item" *ngFor="let asset of portfolio.assets">
+        <mat-card-title>{{asset.assetName}}</mat-card-title>
+        <mat-card-subtitle>{{asset.value | currency:'AUD'}}</mat-card-subtitle>
+        <mat-card-content>
+            <mat-list>
+                <mat-list-item >
+                    <mat-icon mat-list-icon>graphic_eq</mat-icon>
+                    <h4 mat-line>{{asset.profitLoss | percent}}</h4>
+                    <p mat-line>{{asset.units}}</p>
+                </mat-list-item>
+            </mat-list>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -6,7 +6,7 @@ import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
 
-export interface Trade {
+export class Trade {
     id: number;
     type: TradeType;
     openedDate: Date;

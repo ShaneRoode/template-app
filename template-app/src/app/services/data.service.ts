@@ -1,14 +1,17 @@
-import { Injectable } from '@angular/core';
-
+import { Observable } from 'rxjs/Observable';
 import { Wallet } from './../model/wallet';
 import { Trade, TradeType, TradesDataSource } from './../model/trade';
+import { BTCMarketsCSV } from './../model/api';
+import { Injectable } from '@angular/core';
+import { LocalStorageService } from 'angular-2-local-storage';
 
 @Injectable()
 export class DataService {
 
   wallets: Wallet[];
+  btcMarketsCSV: BTCMarketsCSV[];
 
-  constructor() {
+  constructor(private localStorageService: LocalStorageService) {
     this.setWallets();
   }
 
@@ -33,10 +36,35 @@ export class DataService {
     return JSON.parse(localStorage.getItem(LocalStorageKey.wallets.toString()));
   }
 
+  delete(key: LocalStorageKey) {
+    this.localStorageService.remove(key.toString());
+  }
+
+  getBTCMarketsCSV(): BTCMarketsCSV[] {
+    if (!this.btcMarketsCSV) {
+      // const data: BTCMarketsCSV = JSON.parse('[{}]'); Type of storage
+      // debugger;
+      // const data = 
+      this.btcMarketsCSV = JSON.parse(
+        this.localStorageService.get(LocalStorageKey.btcMarketsCSV.toString())
+      );
+      // Might need to set a mock here
+    }
+
+    return this.btcMarketsCSV;
+  }
+
+  setBTCMarketsCSV(data: BTCMarketsCSV[]): boolean {
+    return this.localStorageService.set(LocalStorageKey.btcMarketsCSV.toString(), data);
+  }
+
+  save(key: LocalStorageKey, val) {
+    // Returns true if good
+    return this.localStorageService.set(key.toString(), val);
+  }
 }
 
-enum LocalStorageKey {
-  wallets
+export enum LocalStorageKey {
+  wallets,
+  btcMarketsCSV
 }
-
-

@@ -1,3 +1,5 @@
+import { CreateTradeDialogComponent } from './../create-trade-dialog/create-trade-dialog.component';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 
@@ -26,9 +28,12 @@ export class TradesComponent implements OnInit {
   tradeDatabase = new TradeDatabase();
   trades: TradesDataSource | null;
   trade: Trade;
+  dialogRef: any;
 
-  constructor(private dataService: DataService) {
-  }
+  constructor(
+    private dataService: DataService,
+    public snackBar: MatSnackBar,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     // this.trades = this.dataService.getTrades();
@@ -37,6 +42,31 @@ export class TradesComponent implements OnInit {
       return;
     }
     this.trades = new TradesDataSource(this.tradeDatabase);
+  }
+
+  openDialog(): void {
+    this.dialogRef = this.dialog.open(CreateTradeDialogComponent, {
+      width: '250px',
+      data: this.trade,
+    });
+
+    this.dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.addTrade(result);
+      }
+    });
+  }
+
+  addTrade(trade: Trade) {
+    //this.trades.next(trade);
+    this.trade = this.initTrade();
+    this.openSnackBar('wallet added', 'Undo');
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
   initTrade(): Trade {
@@ -51,10 +81,6 @@ export class TradesComponent implements OnInit {
       actualRate: 0,
       costProceeds: 0,
     };
-  }
-
-  addTrade() {
-    // this.trades.push(this.trade);
   }
 }
 

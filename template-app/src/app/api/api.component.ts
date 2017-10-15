@@ -1,3 +1,4 @@
+import { DataService, LocalStorageKey } from './../services/data.service';
 import { BTCMarketsCSV } from './../model/api';
 import { Component, OnInit } from '@angular/core';
 import { JsonPipe } from '@angular/common';
@@ -15,8 +16,11 @@ import { BittrexApiModule } from 'node-bittrex-api';
 export class ApiComponent implements OnInit {
 
   blockExplorerAddrAPI = 'https://blockexplorer.com/api/addr/';
+  blockExplorerTxAPI = 'https://blockexplorer.com/api/tx/';
   bitcoinWalletAddrKey = '';
+  bitcoinWalletTxKey = '';
   bitcoinAddrData: any;
+  bitcoinTxData: any;
 
   bittrexAPIURL = 'https://bittrex.com/api/v1.1/';
   bittrexAPIKey = '';
@@ -25,15 +29,18 @@ export class ApiComponent implements OnInit {
   btcMarketsCSVFile = 'tdl884vv4sb5fljqtuo7ah77o3.csv';
   csvData: any[] = [];
   displayedColumns = [];
-  apiDatabase = new ApiDatabase();
   btcMarketsTrades: BTCMarketsDataSource | null;
   btcMarketTrade: BTCMarketsCSV;
+  btcMarketsCSV: BTCMarketsCSV[];
 
   gettingData: boolean;
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private dataService: DataService) { }
 
   ngOnInit() {
+
+    this.btcMarketsCSV = this.dataService.getBTCMarketsCSV();
+    console.log('this.btcMarketsCSV', this.btcMarketsCSV);
 
     if (this.bitcoinWalletAddrKey) {
       this.getWalletData(this.bitcoinWalletAddrKey);
@@ -41,9 +48,8 @@ export class ApiComponent implements OnInit {
     if (this.bittrexAPIKey) {
       this.setupBittrexAPI();
     }
-    if (!this.btcMarketsTrades) {
-      this.btcMarketsTrades = new BTCMarketsDataSource(this.apiDatabase);
-      this.getBTCMarketData();
+    if (this.btcMarketsCSVFile) {
+      this.getBTCMarketCSVData();
     }
   }
 
@@ -71,19 +77,24 @@ export class ApiComponent implements OnInit {
     this.getBittrexBalancesData(this.bittrexAPIKey);
   }
 
-  getBTCMarketData() {
+  getBTCMarketCSVData() {
     this.gettingData = true;
     this.http.get('./assets/' + this.btcMarketsCSVFile)
       .subscribe(
-      data => this.updateTrades(data),
+      data => this.extractCSVData(data),
       err => this.handleError(err))
+      .add(() => this.updateTrades())
       .add(() => this.gettingData = false);
   }
 
-  updateTrades(data) {
-    this.extractCSVData(data);
-    // csvToJson
-    // Update btcMarketsTrades.
+  updateTrades() {
+    console.log('csvData: ', this.csvData);
+    const saveResult = this.dataService.setBTCMarketsCSV(this.btcMarketsCSV);
+    console.log('saveResult: ', saveResult);
+    this.btcMarketsCSV = this.dataService.getBTCMarketsCSV();
+
+    this.btcMarketsTrades = new BTCMarketsDataSource(new ApiDatabase(this.csvData));
+    console.log('btcMarketsTrades: ', this.btcMarketsTrades);
   }
 
   getWalletData(address: string) {
@@ -91,6 +102,14 @@ export class ApiComponent implements OnInit {
     this.http.get(this.blockExplorerAddrAPI + address)
       .map(response => response.json())
       .subscribe(res => this.bitcoinAddrData = res)
+      .add(() => this.gettingData = false);
+  }
+
+  getWalletTransaction(txid: string) {
+    this.gettingData = true;
+    this.http.get(this.blockExplorerTxAPI + txid)
+      .map(response => response.json())
+      .subscribe(res => this.bitcoinTxData = res)
       .add(() => this.gettingData = false);
   }
 
@@ -117,7 +136,7 @@ export class ApiComponent implements OnInit {
     for (let i = 0; i < headers.length; i++) {
       headersNoSpace.push(headers[i].replace(/ /g, ''));
     }
-    this.csvData = lines;
+    this.csvData = lines.splice(1, lines.length);
     this.displayedColumns = headersNoSpace;
   }
 

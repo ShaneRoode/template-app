@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material';
 
 import { DataService } from './../services/data.service';
 import { Wallet } from './../model/wallet';
@@ -36,7 +36,7 @@ export class WalletsComponent implements OnInit {
     });
 
     this.dialogRef.afterClosed().subscribe(result => {
-      if(result){
+      if (result) {
         this.addWallet(result);
       }
     });

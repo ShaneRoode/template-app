@@ -11,6 +11,17 @@ img.card-img-top {
     background-position: center; 
 }
 
+.create-wallet {
+    position: absolute;
+    top: 14px;
+    right: 13px;
+}
+
+.wallets-grid {
+    display: flex;
+}
+
 mat-card {
     margin-bottom: 20px;
+    margin-right: 20px;
 }
