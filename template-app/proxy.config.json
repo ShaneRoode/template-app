@@ -1,0 +1,7 @@
+{
+    "https://bittrex.com/api/*": {
+        "target": "http://localhost:4200/",
+        "secure": true,
+        "logLevel": "debug"
+    }
+}

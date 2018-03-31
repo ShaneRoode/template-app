@@ -2,8 +2,10 @@ import { Observable } from 'rxjs/Observable';
 import { Wallet } from './../model/wallet';
 import { Trade, TradeType, TradesDataSource } from './../model/trade';
 import { BTCMarketsCSV } from './../model/api';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { LocalStorageService } from 'angular-2-local-storage';
+// const { PouchDB } = require('pouchdb');
+import PouchDB from 'pouchdb';
 
 @Injectable()
 export class DataService {
@@ -11,9 +13,61 @@ export class DataService {
   wallets: Wallet[];
   btcMarketsCSV: BTCMarketsCSV[];
 
+  private isInstantiated: boolean;
+  dataBase: any;
+  private database: any;
+  private listener: EventEmitter<any> = new EventEmitter();
+
   constructor(private localStorageService: LocalStorageService) {
-    this.setWallets();
+    if (!this.isInstantiated) {
+      this.setWallets();
+
+      this.database = new PouchDB('my_database');
+      console.log('my_database', this.dataBase);
+      this.isInstantiated = true;
+    }
   }
+
+  fetch() {
+    return this.database.allDocs({ include_docs: true });
+  }
+
+  get(id: string) {
+    return this.database.get(id);
+  }
+
+  put(id: string, document: any) {
+    document._id = id;
+    return this.get(id).then(result => {
+      document._rev = result._rev;
+      return this.database.put(document);
+    }, error => {
+      if (error.status === '404') {
+        return this.database.put(document);
+      } else {
+        return new Promise((resolve, reject) => {
+          reject(error);
+        });
+      }
+    });
+  }
+
+  sync(remote: string) {
+    const remoteDatabase = new PouchDB(remote);
+    this.database.sync(remoteDatabase, {
+      live: true
+    }).on('change', change => {
+      this.listener.emit(change);
+    }).on('error', error => {
+      console.error(JSON.stringify(error));
+    });
+  }
+
+  getChangeListener() {
+    return this.listener;
+  }
+
+  // =======
 
   setWallets() {
 
@@ -27,7 +81,12 @@ export class DataService {
     wallet2.name = 'Neo';
     wallet2.units = 285.5031221;
 
-    const wallets = [wallet1, wallet2];
+    const wallet3 = new Wallet;
+    wallet2.id = 3;
+    wallet2.name = 'icon';
+    wallet2.units = 400;
+
+    const wallets = [wallet1, wallet2, wallet3];
 
     localStorage.setItem(LocalStorageKey.wallets.toString(), JSON.stringify(wallets));
   }

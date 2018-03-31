@@ -6,7 +6,8 @@ import { Http } from '@angular/http';
 
 import { Wallet } from './../model/wallet';
 import { ApiDatabase, BTCMarketsDataSource } from 'app/model/api';
-import { BittrexApiModule } from 'node-bittrex-api';
+import BittrexApiModule from 'node-bittrex-api';
+// const BittrexApiModule = require('node-bittrex-api');
 
 @Component({
   selector: 'app-api',
@@ -26,7 +27,7 @@ export class ApiComponent implements OnInit {
   bittrexAPIKey = '';
   bittrexAPISecret = '';
 
-  btcMarketsCSVFile = 'tdl884vv4sb5fljqtuo7ah77o3.csv';
+  btcMarketsCSVFile = '.csv';
   csvData: any[] = [];
   displayedColumns = [];
   btcMarketsTrades: BTCMarketsDataSource | null;
@@ -40,33 +41,44 @@ export class ApiComponent implements OnInit {
   ngOnInit() {
 
     this.btcMarketsCSV = this.dataService.getBTCMarketsCSV();
-    console.log('this.btcMarketsCSV', this.btcMarketsCSV);
 
     if (this.bitcoinWalletAddrKey) {
       this.getWalletData(this.bitcoinWalletAddrKey);
     }
     if (this.bittrexAPIKey) {
-      this.setupBittrexAPI();
+      this.getBittrexMarkets();
+      // this.setupBittrexAPI();
     }
     if (this.btcMarketsCSVFile) {
       this.getBTCMarketCSVData();
     }
   }
 
-  getBittrexBalancesData(apiKey: string) {
-    // this.gettingData = true;
-    // BittrexApiModule.sendCustomRequest( 'http://bittrex.com/api/v1.1/public/getmarketsummary?market=btc-ltc', function( data ) {
-    //   console.log( data );
-    // }, true);
-    // BittrexApiModule.getbalances((data, err) => {
-    //   if (err) {
-    //     return console.error(err);
-    //   }
-    //   console.log(data);
-    // });
+  getBittrexBalances(apiKey: string) {
+    this.gettingData = true;
+    BittrexApiModule.sendCustomRequest('https://bittrex.com/api/v1.1/public/getmarketsummary?market=btc-ltc', function (data) {
+      console.log(data);
+    }, true);
+    BittrexApiModule.getbalances((data, err) => {
+      if (err) {
+        return console.error(err);
+      }
+      console.log(data);
+    });
+  }
+
+  getBittrexMarkets() {
+    this.gettingData = true;
+    
+    this.http.get('https://bittrex.com/api/v1.1/public/getmarkets')
+      .subscribe(
+      data => console.log(data),
+      err => this.handleError(err))
+      .add(() => this.gettingData = false);
   }
 
   setupBittrexAPI() {
+    debugger;
     BittrexApiModule.options({
       'apikey': this.bittrexAPIKey,
       'apisecret': this.bittrexAPISecret,
@@ -74,7 +86,7 @@ export class ApiComponent implements OnInit {
       'verbose': true,
       'cleartext': false
     });
-    this.getBittrexBalancesData(this.bittrexAPIKey);
+    this.getBittrexBalances(this.bittrexAPIKey);
   }
 
   getBTCMarketCSVData() {

@@ -28,6 +28,7 @@ import { AppComponent } from './app.component';
 import { AppRouterModule } from './app-router/app-router.module';
 
 import { DataService } from './services/data.service';
+import { MessageService } from './services/message.service';
 
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
@@ -40,6 +41,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { CreateWalletDialogComponent } from './create-wallet-dialog/create-wallet-dialog.component';
 import { CreateTradeDialogComponent } from './create-trade-dialog/create-trade-dialog.component';
 
+declare var require: any;
 
 @NgModule({
   declarations: [
@@ -87,7 +89,8 @@ import { CreateTradeDialogComponent } from './create-trade-dialog/create-trade-d
     CreateTradeDialogComponent
   ],
   providers: [
-    DataService
+    DataService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })
