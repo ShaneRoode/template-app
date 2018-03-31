@@ -69,7 +69,6 @@ export class ApiComponent implements OnInit {
 
   getBittrexMarkets() {
     this.gettingData = true;
-    
     this.http.get('https://bittrex.com/api/v1.1/public/getmarkets')
       .subscribe(
       data => console.log(data),
@@ -78,7 +77,6 @@ export class ApiComponent implements OnInit {
   }
 
   setupBittrexAPI() {
-    debugger;
     BittrexApiModule.options({
       'apikey': this.bittrexAPIKey,
       'apisecret': this.bittrexAPISecret,
