@@ -103,7 +103,7 @@ export class DataService {
     if (!this.btcMarketsCSV) {
       // const data: BTCMarketsCSV = JSON.parse('[{}]'); Type of storage
       // debugger;
-      // const data = 
+      // const data =
       this.btcMarketsCSV = JSON.parse(
         this.localStorageService.get(LocalStorageKey.btcMarketsCSV.toString())
       );
