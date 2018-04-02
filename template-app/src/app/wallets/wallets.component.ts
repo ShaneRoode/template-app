@@ -46,7 +46,12 @@ export class WalletsComponent implements OnInit {
 
     this.wallets.push(wallet);
     this.wallet = new Wallet;
+    this.dataService.addWallets(wallet);
     this.openSnackBar('wallet added', 'Undo');
+  }
+
+  deleteWallet(wallet: Wallet) {
+    this.dataService.deleteWallet(wallet);
   }
 
   openSnackBar(message: string, action: string) {

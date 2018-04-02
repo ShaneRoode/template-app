@@ -6,7 +6,7 @@ import { Http } from '@angular/http';
 
 import { Wallet } from './../model/wallet';
 import { ApiDatabase, BTCMarketsDataSource } from 'app/model/api';
-import BittrexApiModule from 'node-bittrex-api';
+// import BittrexApiModule from 'node-bittrex-api';
 // const BittrexApiModule = require('node-bittrex-api');
 
 @Component({
@@ -56,15 +56,15 @@ export class ApiComponent implements OnInit {
 
   getBittrexBalances(apiKey: string) {
     this.gettingData = true;
-    BittrexApiModule.sendCustomRequest('https://bittrex.com/api/v1.1/public/getmarketsummary?market=btc-ltc', function (data) {
-      console.log(data);
-    }, true);
-    BittrexApiModule.getbalances((data, err) => {
-      if (err) {
-        return console.error(err);
-      }
-      console.log(data);
-    });
+    // BittrexApiModule.sendCustomRequest('https://bittrex.com/api/v1.1/public/getmarketsummary?market=btc-ltc', function (data) {
+    //   console.log(data);
+    // }, true);
+    // BittrexApiModule.getbalances((data, err) => {
+    //   if (err) {
+    //     return console.error(err);
+    //   }
+    //   console.log(data);
+    // });
   }
 
   getBittrexMarkets() {
@@ -77,13 +77,13 @@ export class ApiComponent implements OnInit {
   }
 
   setupBittrexAPI() {
-    BittrexApiModule.options({
-      'apikey': this.bittrexAPIKey,
-      'apisecret': this.bittrexAPISecret,
-      'stream': false,
-      'verbose': true,
-      'cleartext': false
-    });
+    // BittrexApiModule.options({
+    //   'apikey': this.bittrexAPIKey,
+    //   'apisecret': this.bittrexAPISecret,
+    //   'stream': false,
+    //   'verbose': true,
+    //   'cleartext': false
+    // });
     this.getBittrexBalances(this.bittrexAPIKey);
   }
 
@@ -99,8 +99,8 @@ export class ApiComponent implements OnInit {
 
   updateTrades() {
     console.log('csvData: ', this.csvData);
-    const saveResult = this.dataService.setBTCMarketsCSV(this.btcMarketsCSV);
-    console.log('saveResult: ', saveResult);
+    // const saveResult = this.dataService.setBTCMarketsCSV(this.btcMarketsCSV);
+    // console.log('saveResult: ', saveResult);
     this.btcMarketsCSV = this.dataService.getBTCMarketsCSV();
 
     this.btcMarketsTrades = new BTCMarketsDataSource(new ApiDatabase(this.csvData));

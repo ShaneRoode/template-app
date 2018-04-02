@@ -25,3 +25,7 @@ mat-card {
     margin-bottom: 20px;
     margin-right: 20px;
 }
+
+.delete-wallet{
+    cursor: pointer;
+}

@@ -3,14 +3,14 @@ import { Wallet } from './../model/wallet';
 import { Trade, TradeType, TradesDataSource } from './../model/trade';
 import { BTCMarketsCSV } from './../model/api';
 import { Injectable, EventEmitter } from '@angular/core';
-import { LocalStorageService } from 'angular-2-local-storage';
+// import { LocalStorageService } from 'angular-2-local-storage';
 // const { PouchDB } = require('pouchdb');
 import PouchDB from 'pouchdb';
 
 @Injectable()
 export class DataService {
 
-  wallets: Wallet[];
+  wallets: Wallet[] = new Array();
   btcMarketsCSV: BTCMarketsCSV[];
 
   private isInstantiated: boolean;
@@ -18,13 +18,13 @@ export class DataService {
   private database: any;
   private listener: EventEmitter<any> = new EventEmitter();
 
-  constructor(private localStorageService: LocalStorageService) {
-    if (!this.isInstantiated) {
+  constructor() {
+    if (this.getWallets().length === 0) {
       this.setWallets();
-
-      this.database = new PouchDB('my_database');
-      console.log('my_database', this.dataBase);
-      this.isInstantiated = true;
+      console.log('set wallets');
+      // this.database = new PouchDB('my_database');
+      // console.log('my_database', this.dataBase);
+      // this.isInstantiated = true;
     }
   }
 
@@ -82,9 +82,9 @@ export class DataService {
     wallet2.units = 285.5031221;
 
     const wallet3 = new Wallet;
-    wallet2.id = 3;
-    wallet2.name = 'icon';
-    wallet2.units = 400;
+    wallet3.id = 3;
+    wallet3.name = 'icon';
+    wallet3.units = 400;
 
     const wallets = [wallet1, wallet2, wallet3];
 
@@ -92,11 +92,37 @@ export class DataService {
   }
 
   getWallets(): Wallet[] {
-    return JSON.parse(localStorage.getItem(LocalStorageKey.wallets.toString()));
+    this.wallets = JSON.parse(
+      localStorage.getItem(LocalStorageKey.wallets.toString())
+    );
+    return this.wallets;
+  }
+
+  addWallets(wallet: Wallet) {
+    // if (this.wallets.length === 0) {
+    //   this.wallets = this.getWallets();
+    // }
+    // this.wallets.push(wallet);
+
+    localStorage.setItem(
+      LocalStorageKey.wallets.toString(), JSON.stringify(this.wallets)
+    );
+  }
+
+  deleteWallet(wallet: Wallet) {
+
+    const index = this.wallets.indexOf(wallet, 0);
+    if (index > -1) {
+      this.wallets.splice(index, 1);
+    }
+
+    localStorage.setItem(
+      LocalStorageKey.wallets.toString(), JSON.stringify(this.wallets)
+    );
   }
 
   delete(key: LocalStorageKey) {
-    this.localStorageService.remove(key.toString());
+    // this.localStorageService.remove(key.toString());
   }
 
   getBTCMarketsCSV(): BTCMarketsCSV[] {
@@ -104,23 +130,23 @@ export class DataService {
       // const data: BTCMarketsCSV = JSON.parse('[{}]'); Type of storage
       // debugger;
       // const data =
-      this.btcMarketsCSV = JSON.parse(
-        this.localStorageService.get(LocalStorageKey.btcMarketsCSV.toString())
-      );
+      // this.btcMarketsCSV = JSON.parse(
+      //   this.localStorageService.get(LocalStorageKey.btcMarketsCSV.toString())
+      // );
       // Might need to set a mock here
     }
 
     return this.btcMarketsCSV;
   }
 
-  setBTCMarketsCSV(data: BTCMarketsCSV[]): boolean {
-    return this.localStorageService.set(LocalStorageKey.btcMarketsCSV.toString(), data);
-  }
+  // setBTCMarketsCSV(data: BTCMarketsCSV[]): boolean {
+  //   return this.localStorageService.set(LocalStorageKey.btcMarketsCSV.toString(), data);
+  // }
 
-  save(key: LocalStorageKey, val) {
-    // Returns true if good
-    return this.localStorageService.set(key.toString(), val);
-  }
+  // save(key: LocalStorageKey, val) {
+  //   // Returns true if good
+  //   return this.localStorageService.set(key.toString(), val);
+  // }
 }
 
 export enum LocalStorageKey {

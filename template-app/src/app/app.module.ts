@@ -3,7 +3,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { LocalStorageModule } from 'angular-2-local-storage';
 
 import {
   MatButtonModule,
@@ -38,6 +37,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { WalletsComponent } from './wallets/wallets.component';
 import { ApiComponent } from './api/api.component';
 import { SettingsComponent } from './settings/settings.component';
+
 import { CreateWalletDialogComponent } from './create-wallet-dialog/create-wallet-dialog.component';
 import { CreateTradeDialogComponent } from './create-trade-dialog/create-trade-dialog.component';
 
@@ -61,10 +61,6 @@ declare var require: any;
     BrowserModule,
     FormsModule,
     HttpModule,
-    LocalStorageModule.withConfig({
-      prefix: 'my-app',
-      storageType: 'localStorage'
-    }),
     AppRouterModule,
     BrowserAnimationsModule,
     MatButtonModule,
